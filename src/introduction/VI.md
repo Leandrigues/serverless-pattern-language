@@ -1,0 +1,8 @@
+# Internal API as alternative to Internal Handoff
+Internal API and Internal Handoff have similar solutions: a client calls directly the function, without an API Gateway over it. They differ in the type of request they use. Internal API proposes the usage of a synchronous HTTP request, while Internal Handoff proposes the usage of an asynchronous event.
+
+### Use case 
+Suppose you're building a back-end system to serve an e-commerce. One of the tasks is to implement the payment service of the website. To do so, you can have a serverless function that receives that user's card digits and returns if the payment was concluded successfully. Since this is a complex operation that needs to call external services, such as the bank service, the user cannot wait for this task to finish, so you could call this function by using an asynchronous event, such as proposed by the Internal Handoff pattern. With this, the request is sent, the payment task is executed, and the status will be returned at some point to the client through a message broker (e.g., AWS SQS, AWS SNS). On the other hand, you also need to implement a shipment price calculator. In this case, the client needs to know the price as fast as possible, so that he can finish the checkout. In this case, the usage of Internal API would fit better, since it would call the back-end shipment calculator function using a synchronous request and will return it to the front-end as soon as possible.
+
+### Trade-off Analysis:
+Calling synchronously a function is a better approach when the client needs a response instantly, such as in a web interface, while calling it asynchronously is a good choice if long tasks are going to be executed. Also, asynchronous calls lead to a more decoupled interaction.

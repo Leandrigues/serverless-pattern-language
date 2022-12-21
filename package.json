@@ -1,0 +1,19 @@
+{
+  "name": "serverlessguru",
+  "version": "0.0.1",
+  "description": "A pattern language for serverless architectures",
+  "main": "index.js",
+  "authors": {
+    "name": "Leandro",
+    "email": "leandro.rodrigues.silva99@gmail.com"
+  },
+  "repository": "https://github.com/Leandrigues/serverlessguru/serverlessguru",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
